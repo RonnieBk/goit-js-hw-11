@@ -42,7 +42,8 @@ async function getPictures(inputValue) {
         per_page: perPage,
       },
     });
-    return response.data;
+    const data = await response.data;
+    return data;
   } catch (error) {
     console.error(error);
   }
