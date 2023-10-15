@@ -22,6 +22,7 @@ searchForm.addEventListener('submit', event => {
   galleryDiv.innerHTML = '';
   pageNumber = 1;
   getPicturesInfo();
+  window.addEventListener('scroll', infiniteScroll);
 });
 
 btnNext.addEventListener('click', event => {
@@ -81,6 +82,7 @@ function nextPagePictures() {
         createGallery(dataArray);
         btnNext.classList.toggle('hidden');
       } else {
+        window.removeEventListener('scroll', infiniteScroll);
         throw new Error(
           "We're sorry, but you've reached the end of search results."
         );
@@ -139,4 +141,14 @@ function scrollWin() {
     top: cardHeight * 2,
     behavior: 'smooth',
   });
+}
+
+function infiniteScroll() {
+  const scroll = Math.floor(window.scrollY + window.innerHeight);
+  const docHeight = Math.floor(
+    document.documentElement.getBoundingClientRect().height
+  );
+  if (scroll === docHeight) {
+    nextPagePictures();
+  }
 }
