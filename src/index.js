@@ -129,4 +129,14 @@ function createGallery(array) {
     .join('');
   galleryDiv.innerHTML += markup;
   lightbox.refresh();
+  scrollWin();
+}
+
+function scrollWin() {
+  const { height: cardHeight } =
+    galleryDiv.firstElementChild.getBoundingClientRect();
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
