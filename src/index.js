@@ -22,7 +22,6 @@ searchForm.addEventListener('submit', event => {
   galleryDiv.innerHTML = '';
   pageNumber = 1;
   getPicturesInfo();
-  btnNext.classList.remove('hidden');
 });
 
 btnNext.addEventListener('click', event => {
@@ -61,6 +60,7 @@ function getPicturesInfo() {
       } else {
         Notiflix.Notify.success(`Hooray! We found ${dataTotalHits} images.`);
         createGallery(dataArray);
+        btnNext.classList.remove('hidden');
       }
     })
     .catch(error => {
