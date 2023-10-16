@@ -14,10 +14,9 @@ let pageNumber;
 let perPage = 40;
 let dataTotalHits;
 
-btnNext.classList.add('hidden');
-
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
+  btnNext.classList.add('hidden');
   galleryDiv.innerHTML = '';
   pageNumber = 1;
   getPicturesInfo();
@@ -41,7 +40,9 @@ async function getPicturesInfo() {
     } else {
       Notiflix.Notify.success(`Hooray! We found ${dataTotalHits} images.`);
       createGallery(dataArray);
-      btnNext.classList.remove('hidden');
+      if (dataTotalHits > perPage) {
+        btnNext.classList.remove('hidden');
+      }
     }
   } catch (error) {
     Notiflix.Notify.failure(`${error}`);
